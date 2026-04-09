@@ -1,10 +1,10 @@
 import React from 'react'
 import SearchBar from './SearchBar'
 
-const Navbar = () => {
+const Navbar = ({handleInput, handleSearch}) => {
   return (
     <div>
-     <SearchBar />
+     <SearchBar handleInput={handleInput} handleSearch={handleSearch}/>
     </div>
   )
 }
