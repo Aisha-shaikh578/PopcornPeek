@@ -13,8 +13,8 @@ export const useMovies = (query) => {
     // }
 
     const fetchData = async () => {
-      try {
-       const res = await axios.get(`https://www.omdbapi.com/?s=batman&apikey=7de9ed53`)
+      try { 
+       const res = await axios.get(`https://www.omdbapi.com/?s=movie&apikey=7de9ed53&s=${query}`)
        setMovies(res.data.Search || []);
       } catch (err) {
         setError('OOPS! Something went wrong!')

@@ -2,8 +2,15 @@ import React from 'react'
 
 const MovieCard = ({ movie }) => {
 
+  const handleNewReq = () => {
+    console.log('new req');
+  }
+
   return (
-    <div className='w-40 h-50 bg-gray-200 p-2 rounded-xl flex flex-col gap-2 relative'>
+    <div 
+    className='w-40 h-50 bg-gray-200 p-2 rounded-xl flex flex-col gap-2 relative'
+    onClick={handleNewReq}
+    >
       <div>
         <h2 className='text-nowrap overflow-hidden text-ellipsis font-bold text-xl'>
           {movie.Title}

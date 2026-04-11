@@ -3,6 +3,8 @@ import Navbar from './Components/Navbar'
 import Category from './Components/Category'
 import MovieCard from './Components/MovieCard'
 import { useMovies } from './Hooks/useMovies'
+import { Route, Routes } from 'react-router-dom'
+import Settings from './Pages/Settings'
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -14,23 +16,28 @@ const App = () => {
   }
 
   const handleSearch = () => {
-    console.log(searchTerm || '');
+    setSearchTerm(searchTerm)
   }
   
   return (
-    <div className='h-full md:h-screen p-5 md:px-14 lg:px-24 xl:px-35 2xl:px-58 bg-gray-300 w-full'>
-     <Navbar handleInput={handleInput} handleSearch={handleSearch}/>
-     <Category />
-     <div className='flex flex-wrap gap-5 mt-6 justify-center items-center'>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {movies.map((movie,idx) => {
-        return(
-         <MovieCard key={idx} movie={movie}/>  
-        )
-      })}
-     </div>
+    <Routes>
+      <Route path='*' element={
+        <div className='h-full md:h-screen p-5 md:px-14 lg:px-24 xl:px-35 2xl:px-58 bg-gray-300 w-full overflow-auto'>
+        <Navbar handleInput={handleInput} handleSearch={handleSearch}/>
+        <Category />
+        <div className='flex flex-wrap gap-5 mt-6 justify-center items-center'>
+          {isLoading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+          {movies.map((movie,idx) => {
+           return(
+           <MovieCard key={idx} movie={movie}/>  
+          )
+          })}
+       </div>
     </div>
+    }/>
+    <Route path='/settings' element={<Settings />}/>
+    </Routes>
   )
 }
 
